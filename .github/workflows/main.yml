@@ -38,13 +38,28 @@ jobs:
         #      **** STEP 2 ****
         #docker [image, container] ls --all
         #
-        docker create --name xvx --label my-label --workdir / -t ubuntu bash # -m "commit ..36" #44
-        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
-        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+        #docker create --name xvx --label my-label --workdir / -t ubuntu bash # -m "commit ..36" #44
+        #docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+        #docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+        #Removing intermediate container 31fbbfd9d297
+        # ---> 6adb18174d61
+        # Successfully built 6adb18174d61
+        # Successfully tagged ***/***:9f134e4cf3a13e36e15745d4e81aeb9063bd4b96
+        # The push refers to repository [docker.io/***/***]
+        # ae84b432e83e: Preparing
+        # 867d0767a47c: Preparing
+        # 867d0767a47c: Layer already exists
+        # ae84b432e83e: Pushed
+        # 9f134e4cf3a13e36e15745d4e81aeb9063bd4b96: digest: sha256:6d1faec8856639486a168bdc305bf30ad66e3f3c1a07ec00e8e7f52827d26c7f size: 736
+        # CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS    PORTS     NAMES
+        # 4e77dcf52825   ubuntu    "bash"    8 seconds ago   Created             xvx
+        # 
+        #
         #> Digest: sha256:bea6d19168bbfd6af8d77c2cc3c572114eb5d113e6f422573c93cb605a0e2fb
         #> Status: Downloaded newer image for ubuntu:latest
         #> 43dd45856f7cba5642622e971ee62eb62408f58138c5778f47ac600d28fc20d4
         #
         docker container ls -a
+        docker exec -it 4e77dcf52825 /bin/bash
         #docker exec -it 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40 /bin/bash
         #docker pull 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40
