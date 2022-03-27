@@ -38,7 +38,7 @@ jobs:
         #      **** STEP 2 ****
         #docker [image, container] ls --all
         #
-        docker create --name xvx --cpus 16 --cpuset-cpu 0-14 --label my-label --workdir / -t ubuntu bash # -m "commit ..36" #44
+        docker create --name xvx --cpus 16 --cpuset-cpus 0-14 --label my-label --workdir / -t ubuntu bash # -m "commit ..36" #44
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
         #> Digest: sha256:bea6d19168bbfd6af8d77c2cc3c572114eb5d113e6f422573c93cb605a0e2fb
         #> Status: Downloaded newer image for ubuntu:latest
