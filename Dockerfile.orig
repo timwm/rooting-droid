@@ -1,0 +1,53 @@
+DOCKER_HUB_TOKEN : b5697de7-d722-4965-94ca-dbadc37c8de5
+DOCKER_HUB_USERNAME : 095timw013579111317
+DOCKER_HUB_REPOSITORY : github_repo
+
+# ************************** Begin Dockerfile ********************************
+
+FROM node:17 as build
+
+#RUN mkdir /app
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+# COPY . /app
+COPY --from=build /app /
+# RUN npm install
+
+# # Or if you're using Yarn
+# # ADD package.json yarn.lock /app/
+RUN npm ci && npm run build && rm -r node_modules .cache .cloudbuild .git && ls -a /app / && tar -c /app |gzip >/app.tgz && rm -r /app /home /lib /lib64 /opt /boot /run /root /sbin /bin /srv /usr /tmp /var
+
+# # COPY . /app/
+
+# ************************** End Dockerfile ********************************
+
+
+
+# ************************** Begin Github action workflow ********************************
+
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  
+  build:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+	echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
+	docker build . --file Dockerfile --tag docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+	docker push docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+
+# ************************** End Github action workflow ********************************
