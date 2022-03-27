@@ -40,7 +40,8 @@ jobs:
       #      **** STEP 2 ****
       run: |
         echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
-        docker images --all |tail -n20
+        docker image ls --all
+        docker container ls --all
         #docker exec -it 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40 /bin/bash
         #docker pull 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40
 
