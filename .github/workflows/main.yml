@@ -12,4 +12,6 @@ jobs:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        env:
+          LARGE_SECRET_PASSPHRASE: ${{ secrets.DOCKER_HUB_TOKEN }}
+        run: echo "The [$LARGE_SECRET_PASSPHRASE] time was ${{ steps.hello.outputs.time }}"
