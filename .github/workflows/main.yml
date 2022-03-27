@@ -48,7 +48,6 @@ jobs:
         #> 43dd45856f7cba5642622e971ee62eb62408f58138c5778f47ac600d28fc20d4
         #
         docker container ls -a
-        docker start -a 43dd45856f7cba5642622e971ee62eb62408f58138c5778f47ac600d28fc20d4
         #docker exec -it 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40 /bin/bash
         #docker pull 095timw013579111317/github_repo:a3f77e288dd766121b401a5354b3e86fe04e3e40
-
+my-container-name: ubuntu:latest
