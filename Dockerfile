@@ -7,4 +7,4 @@ COPY entrypoint.sh /entrypoint.sh
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/entrypoint.sh"]
 
-RUN pwd; sudo apt-get install wget; echo;echo;echo "------------------------------------"; wget 'https://assorted.downloads.oppo.com/firmware/CPH2179/CPH2179PU_11_OTA_0210_all_6LDsHsSzX62H.ozip';
+RUN pwd;apt install wget; echo;echo;echo "------------------------------------"; wget 'https://assorted.downloads.oppo.com/firmware/CPH2179/CPH2179PU_11_OTA_0210_all_6LDsHsSzX62H.ozip';
