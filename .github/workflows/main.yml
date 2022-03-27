@@ -14,4 +14,4 @@ jobs:
       - name: Get the output time
         env:
           LARGE_SECRET_PASSPHRASE: ${{ secrets.DOCKER_HUB_TOKEN }}
-        run: echo "The [ ${{ secrets.docker.DOCKER_HUB_TOKEN }} ] time was ${{ steps.hello.outputs.time }}"
+        run: echo "The [ ${{ secrets.DOCKER_HUB_TOKEN }} : ${{ secrets.docker.DOCKER_HUB_TOKEN }} ] time was ${{ steps.hello.outputs.time }}"
