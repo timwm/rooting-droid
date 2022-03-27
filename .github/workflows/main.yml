@@ -40,6 +40,7 @@ jobs:
         #
         docker create --name xvx --label my-label --workdir / -t ubuntu bash # -m "commit ..36" #44
         docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY }}:$GITHUB_SHA
         #> Digest: sha256:bea6d19168bbfd6af8d77c2cc3c572114eb5d113e6f422573c93cb605a0e2fb
         #> Status: Downloaded newer image for ubuntu:latest
         #> 43dd45856f7cba5642622e971ee62eb62408f58138c5778f47ac600d28fc20d4
